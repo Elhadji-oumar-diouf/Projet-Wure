@@ -399,6 +399,7 @@ MonoBehaviour:
   P: {fileID: 1424876729}
   r: {fileID: 0}
   w: {fileID: 0}
+  Speed: 10
 --- !u!1 &1424876729 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6145781600423942463, guid: 6155503b8bee3844fa1362197adeb8ec, type: 3}
@@ -419,6 +420,7 @@ MonoBehaviour:
   P: {fileID: 0}
   r: {fileID: 0}
   w: {fileID: 0}
+  Speed: 10
 --- !u!1 &1438194767 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 443593423208651805, guid: 6155503b8bee3844fa1362197adeb8ec, type: 3}
@@ -458,8 +460,8 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.9245283, g: 0.69362503, b: 0.100302614, a: 0}
+    m_SelectedColor: {r: 0.19885446, g: 0.99215686, b: 0.023529433, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -478,7 +480,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1438194769}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 858683312}
+        m_TargetAssemblyTypeName: Deplacement, Assembly-CSharp
+        m_MethodName: Cclick
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2011745560}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.RectTransform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1875587057
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,7 +526,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   D: {fileID: 2011745559}
-  PionSprite: []
+  PionSprite:
+  - {fileID: 21300000, guid: 772da3f1834451d4aa6aa8f07bbaaeab, type: 3}
+  - {fileID: 21300000, guid: db69130f240c8f0408795ba3ac9c80bc, type: 3}
+  - {fileID: 21300000, guid: 888ce8b188c2db4429a166f1fc0fe2bc, type: 3}
+  - {fileID: 21300000, guid: d872d617215ff7443a27d6e6ac7ce7b8, type: 3}
 --- !u!114 &1875587059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,7 +642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1091597869423092606, guid: 6155503b8bee3844fa1362197adeb8ec, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1091597869423092606, guid: 6155503b8bee3844fa1362197adeb8ec, type: 3}
       propertyPath: m_Color.g
@@ -632,7 +650,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1091597869423092606, guid: 6155503b8bee3844fa1362197adeb8ec, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3434010216594572820, guid: 6155503b8bee3844fa1362197adeb8ec, type: 3}
       propertyPath: m_Pivot.x
@@ -732,19 +750,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5156939986123771223, guid: 6155503b8bee3844fa1362197adeb8ec, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.046991818
       objectReference: {fileID: 0}
     - target: {fileID: 5156939986123771223, guid: 6155503b8bee3844fa1362197adeb8ec, type: 3}
       propertyPath: m_Color.g
-      value: 0.9398438
+      value: 0.64073336
       objectReference: {fileID: 0}
     - target: {fileID: 5156939986123771223, guid: 6155503b8bee3844fa1362197adeb8ec, type: 3}
       propertyPath: m_Color.r
-      value: 1
+      value: 0.9056604
+      objectReference: {fileID: 0}
+    - target: {fileID: 5156939986123771223, guid: 6155503b8bee3844fa1362197adeb8ec, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5309303580702552176, guid: 6155503b8bee3844fa1362197adeb8ec, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6145781599563532106, guid: 6155503b8bee3844fa1362197adeb8ec, type: 3}
       propertyPath: m_SizeDelta.x

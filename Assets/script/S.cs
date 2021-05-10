@@ -40,6 +40,8 @@ public class S : MonoBehaviour
                  else Ci.enabled = true;
                  if (i < (n % 2)) Ci.color = Color.red;
                  else Ci.color = Color.gray;*/
+                if (drt.color == Color.black) D.transform.Find("K2").GetComponent<Image>().enabled = false;
+                else D.transform.Find("K2").GetComponent<Image>().enabled = true;
                 if(i==2 && j == 2){
                     Ci.enabled = false;
                 }

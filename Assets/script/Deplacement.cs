@@ -9,11 +9,30 @@ public class Deplacement : MonoBehaviour
 {
     static string K , K2 = "";
     static Image C ;
-    static Color color = Color.grey;
+    static Color color = Color.white;
     public GameObject P ;
     public Text r, w;
+    public float Speed = 10f;
+    Vector2 LastClickedPos;
+    bool Moving;
     public void Cclick (RectTransform t)
     {
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            LastClickedPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Moving = true;
+        }
+        if (Moving && (Vector2)transform.position != LastClickedPos)
+        {
+            float step = Speed * Time.deltaTime;
+            transform.position = Vector2.MoveTowards(transform.position, LastClickedPos, step);
+        }
+        else
+        {
+            Moving = false;
+        }
+
         S.F();
         C = t.transform.Find("C").GetComponent<Image>() ;
         if (color == C.color)
@@ -21,18 +40,18 @@ public class Deplacement : MonoBehaviour
             string name = t.name;
             int i, j;
             i = Convert.ToInt32((name.Split('&'))[0]);
-            j = Convert.ToInt32((name.Split('&'))[1]);
+            j = Convert.ToInt32((name.Split('&'))[0]);
             int co = -1;
             if (C.color == Color.red) co = 1;
             try { 
-                if (!S.g[i + co, j - 1].transform.Find("C").GetComponent<Image>().enabled)
+                if (!S.g[i + co, j].transform.Find("C").GetComponent<Image>().enabled)
                 {
-                    S.g[i + co, j - 1].transform.Find("K").GetComponent<Image>().enabled = true;
+                    S.g[i + co, j].transform.Find("K").GetComponent<Image>().enabled = true;
                 }
-                else if (S.g[i + co, j - 1].transform.Find("C").GetComponent<Image>().color != C.color && !S.g[i + (co * 2), j - 2].transform.Find("C").GetComponent<Image>().enabled)
+                else if (S.g[i + co, j].transform.Find("C").GetComponent<Image>().color != C.color && !S.g[i + (co * 1), j ].transform.Find("C").GetComponent<Image>().enabled)
                 {
-                    S.g[i + (co * 2), j - 2].transform.Find("K").GetComponent<Image>().enabled = true;
-                    K2 = (i + co) + "" + (j - 1);
+                    S.g[i + (co * 1), j ].transform.Find("K").GetComponent<Image>().enabled = true;
+                    K2 = (i + co) + "" + (j);
                 }
             }
             catch { }
@@ -56,12 +75,12 @@ public class Deplacement : MonoBehaviour
     {
         if (C == 'w') S.Cmp.x++;
         else S.Cmp.y++;
-        if (S.Cmp.x >= 12)
+        if (S.Cmp.x >= 8)
         {
             P.gameObject.SetActive(true);
             P.transform.Find("w").GetComponent<Text>().text = "You win white";
         }
-        if (S.Cmp.y >= 12)
+        if (S.Cmp.y >= 8)
         {
             P.gameObject.SetActive(true);
             P.transform.Find("w").GetComponent<Text>().text = "You win red";
@@ -94,5 +113,6 @@ public class Deplacement : MonoBehaviour
         else color = Color.grey;
 
     }
+   
 
 }
