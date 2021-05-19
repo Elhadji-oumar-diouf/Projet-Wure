@@ -13,45 +13,36 @@ public class Deplacement : MonoBehaviour
     public GameObject P ;
     public Text r, w;
     public float Speed = 10f;
-    Vector2 LastClickedPos;
-    bool Moving;
+    //Vector2 LastClickedPos;
+    // bool Moving;
     public void Cclick (RectTransform t)
     {
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            LastClickedPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Moving = true;
-        }
-        if (Moving && (Vector2)transform.position != LastClickedPos)
-        {
-            float step = Speed * Time.deltaTime;
-            transform.position = Vector2.MoveTowards(transform.position, LastClickedPos, step);
-        }
-        else
-        {
-            Moving = false;
-        }
-
+        
         S.F();
         C = t.transform.Find("C").GetComponent<Image>() ;
+        
         if (color == C.color)
         {
+            Debug.Log($": |{color} {C.color} ");
             string name = t.name;
             int i, j;
             i = Convert.ToInt32((name.Split('&'))[0]);
-            j = Convert.ToInt32((name.Split('&'))[0]);
-            int co = -1;
+            j = Convert.ToInt32((name.Split('&'))[1]);
+            int co = 0;
+          
             if (C.color == Color.red) co = 1;
-            try { 
-                if (!S.g[i + co, j].transform.Find("C").GetComponent<Image>().enabled)
+            
+            try {
+
+                if ( !S.g[i + co, j - 1 ].transform.Find("C").GetComponent<Image>().enabled )
                 {
-                    S.g[i + co, j].transform.Find("K").GetComponent<Image>().enabled = true;
+                    
+                    S.g[i + co, j-1].transform.Find("K").GetComponent<Image>().enabled = true;
                 }
-                else if (S.g[i + co, j].transform.Find("C").GetComponent<Image>().color != C.color && !S.g[i + (co * 1), j ].transform.Find("C").GetComponent<Image>().enabled)
+                else if (S.g[i + co, j-1].transform.Find("C").GetComponent<Image>().color != C.color && !S.g[i + (co * 1), j-1].transform.Find("C").GetComponent<Image>().enabled)
                 {
-                    S.g[i + (co * 1), j ].transform.Find("K").GetComponent<Image>().enabled = true;
-                    K2 = (i + co) + "" + (j);
+                    S.g[i + (co * 1), j-1 ].transform.Find("K").GetComponent<Image>().enabled = true;
+                    K2 = (i + co) + "" + (j-1);
                 }
             }
             catch { }
@@ -64,6 +55,35 @@ public class Deplacement : MonoBehaviour
                 {
                     S.g[i + (co * 2), j + 2].transform.Find("K").GetComponent<Image>().enabled = true;
                     K2 = (i + co) + "" + (j + 1);
+                }
+            }
+            catch { }
+            //co +1
+            try
+            {
+                Debug.Log($": |{i} {co} {j}");
+                if (!S.g[i + (co + 1), j ].transform.Find("C").GetComponent<Image>().enabled)
+                {
+
+                    S.g[i + (co + 1), j ].transform.Find("K").GetComponent<Image>().enabled = true;
+                }
+                else if (S.g[i + (co + 1), j ].transform.Find("C").GetComponent<Image>().color != C.color && !S.g[i + (co * 1), j - 1].transform.Find("C").GetComponent<Image>().enabled)
+                {
+                    S.g[i + ((co + 1) * 1), j - 1].transform.Find("K").GetComponent<Image>().enabled = true;
+                    K2 = (i + (co + 1)) + "" + (j);
+                }
+            }
+            catch { }
+            try
+            {
+                if (!S.g[i + co-1, j].transform.Find("C").GetComponent<Image>().enabled)
+                {
+                    S.g[i + co-1, j].transform.Find("K").GetComponent<Image>().enabled = true;
+                }
+                else if (S.g[i + co - 1, j + 2].transform.Find("C").GetComponent<Image>().color != C.color && !S.g[i + (co - 1 * 2), j + 2].transform.Find("C").GetComponent<Image>().enabled)
+                {
+                    S.g[i + (co - 1 * 2), j + 2].transform.Find("K").GetComponent<Image>().enabled = true;
+                    K2 = (i + co - 1) + "" + (j + 1);
                 }
             }
             catch { }
@@ -113,6 +133,7 @@ public class Deplacement : MonoBehaviour
         else color = Color.grey;
 
     }
-   
+
+    
 
 }

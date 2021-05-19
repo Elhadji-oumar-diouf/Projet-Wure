@@ -21,18 +21,20 @@ public class S : MonoBehaviour
         float left = (cs.x - size.x) * -1, top =(cs.y - size.y);
 
 
-        Color[] colors = new Color[] {Color.HSVToRGB(0.3f,0.5f,1), Color.red };
+        Color[] colors = new Color[] { Color.black, Color.white };
         Image drt = D.GetComponent<Image>(),Ci = D.transform.Find("C").GetComponent<Image>();
-        for ( int i=0 ; i<n; i++){  
-           if(i % 2==0){
-                colors[0] = Color.grey;
-                colors[1]=Color.HSVToRGB(0.17f, 0.11f, 0.77f);
+        for ( int i=0 ; i<n; i++){
+            colors[0] = Color.black;
+            colors[1] = Color.grey;
+          if(i % 2==0){
+                colors[0] = Color.black;
+                colors[1]=Color.white;
             }
             else{
-                colors[0] = Color.HSVToRGB(0.17f, 0.11f, 0.77f);
-                colors[1] = Color.grey;
+                colors[0] = Color.white;
+                colors[1] = Color.black;
             }
-
+           
             for (int j = 0; j < n; j++) {
                 drt.color = colors[(((j % 2) == 0) ? 0 : 1)];
                 /*
@@ -49,12 +51,12 @@ public class S : MonoBehaviour
                 {
                     Ci.enabled = true;
                 }
-                if(i==2 && j == 3)
+                if (i == 2 && j == 3)
                 {
-                    Ci.sprite =PionSprite[1] ;
+                    Ci.sprite =PionSprite[0] ;
 
                 }
-                 g[i,j]=Instantiate(D);
+                g[i,j]=Instantiate(D);
                  g[i,j].transform.SetParent(transform.Find("Panel1"));
                  g[i,j].transform.localPosition=new Vector3(left , top);
                  g[i,j].transform.name = i + "&" + j;
